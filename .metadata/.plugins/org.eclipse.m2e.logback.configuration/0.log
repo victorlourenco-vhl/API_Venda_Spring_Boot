@@ -756,3 +756,15 @@
 2022-12-28 14:04:01,089 [Worker-26: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource
 2022-12-28 14:04:01,103 [Worker-26: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource
 2022-12-28 14:04:01,108 [Worker-26: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory E:\Desktop\APIS_SPRING_BOOT\vendas\src\test\resources
+2022-12-28 14:13:42,624 [Worker-29: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource
+2022-12-28 14:13:42,637 [Worker-29: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource
+2022-12-28 14:13:42,641 [Worker-29: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory E:\Desktop\APIS_SPRING_BOOT\vendas\src\test\resources
+2022-12-28 14:15:38,466 [Worker-31: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource
+2022-12-28 14:15:38,480 [Worker-31: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource
+2022-12-28 14:15:38,484 [Worker-31: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory E:\Desktop\APIS_SPRING_BOOT\vendas\src\test\resources
+2022-12-28 14:26:29,432 [Worker-35: Launching vendas - Application] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource
+2022-12-28 14:26:29,483 [Worker-35: Launching vendas - Application] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource
+2022-12-28 14:26:29,487 [Worker-35: Launching vendas - Application] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory E:\Desktop\APIS_SPRING_BOOT\vendas\src\test\resources
+2022-12-28 14:30:16,780 [Worker-42: Launching vendas - Application] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource
+2022-12-28 14:30:16,791 [Worker-42: Launching vendas - Application] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource
+2022-12-28 14:30:16,796 [Worker-42: Launching vendas - Application] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory E:\Desktop\APIS_SPRING_BOOT\vendas\src\test\resources
