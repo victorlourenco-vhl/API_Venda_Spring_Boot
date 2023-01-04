@@ -7,6 +7,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 
 @Entity
@@ -24,8 +25,11 @@ public class Endereco implements Serializable{
 	private String cep;
 	
 	@ManyToOne
+	@JoinColumn(name = "cidade_id")
 	private Cidade cidade;
+	
 	@ManyToOne
+	@JoinColumn(name = "cliente_id")
 	Cliente cliente;
 		
 	public Endereco() {

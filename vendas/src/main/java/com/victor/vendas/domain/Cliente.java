@@ -7,9 +7,10 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
-import com.victor.vendas.Pedido;
 import com.victor.vendas.domain.enums.TipoCliente;
 
+import jakarta.persistence.CollectionTable;
+import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -29,10 +30,13 @@ public class Cliente implements Serializable{
 	private String cpfOuCnpj;
 	private Integer tipo;
 	
-	@OneToMany
+	@OneToMany(mappedBy = "cliente")
 	private List<Endereco> enderecos = new ArrayList<>();
-	@OneToMany
-	private List<Pedido> pedidos = new ArrayList<>();
+	
+//	private List<Pedido> pedidos = new ArrayList<>();
+	
+	@ElementCollection
+	@CollectionTable(name="TELEFONE")
 	private Set<String> telefones = new HashSet<>();
 	
 	public Cliente() {
@@ -88,13 +92,13 @@ public class Cliente implements Serializable{
 		this.tipo = tipo.getCod();
 	}
 
-	public List<Pedido> getPedidos() {
-		return pedidos;
-	}
-
-	public void setPedidos(List<Pedido> pedidos) {
-		this.pedidos = pedidos;
-	}
+//	public List<Pedido> getPedidos() {
+//		return pedidos;
+//	}
+//
+//	public void setPedidos(List<Pedido> pedidos) {
+//		this.pedidos = pedidos;
+//	}
 
 	public List<Endereco> getEnderecos() {
 		return enderecos;
