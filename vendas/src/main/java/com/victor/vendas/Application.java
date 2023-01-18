@@ -13,6 +13,7 @@ import com.victor.vendas.domain.Cidade;
 import com.victor.vendas.domain.Cliente;
 import com.victor.vendas.domain.Endereco;
 import com.victor.vendas.domain.Estado;
+import com.victor.vendas.domain.ItemPedido;
 import com.victor.vendas.domain.Pagamento;
 import com.victor.vendas.domain.PagamentoComBoleto;
 import com.victor.vendas.domain.PagamentoComCartao;
@@ -25,6 +26,7 @@ import com.victor.vendas.repositories.CidadeRepository;
 import com.victor.vendas.repositories.ClienteRepository;
 import com.victor.vendas.repositories.EnderecoRepository;
 import com.victor.vendas.repositories.EstadoRepository;
+import com.victor.vendas.repositories.ItemPedidoRepository;
 import com.victor.vendas.repositories.PagamentoRepository;
 import com.victor.vendas.repositories.PedidoRepository;
 import com.victor.vendas.repositories.ProdutoRepository;
@@ -55,6 +57,9 @@ public class Application implements CommandLineRunner{
 	
 	@Autowired
 	private PagamentoRepository pagamentoRepository;
+	
+	@Autowired
+	private ItemPedidoRepository itemPedidoRepository;
 
 	public static void main(String[] args) {
 		SpringApplication.run(Application.class, args);
@@ -78,7 +83,7 @@ public class Application implements CommandLineRunner{
 		Cidade c2 = new Cidade(null, "São Paulo", est2);
 		Cidade c3 = new Cidade(null, "Campinas", est2);
 		
-		Cliente cli1 = new Cliente(null, "Maria Siva", "maria@gmail.com", "36378912377", TipoCliente.PESSOAFISICA);	
+		Cliente cli1 = new Cliente(null, "Maria Siva", "maria@gmail.com", "36378912377", TipoCliente.PESSOAFISICA);
 		
 		Endereco e1 = new Endereco(null, "Rua Flores", "300", "Apto 203", "Jardin", "38220834", c1, cli1);
 		Endereco e2 = new Endereco(null, "Avenida Matos", "10", "Sala 800", "Centro", "38777012", c2, cli1);
@@ -90,6 +95,11 @@ public class Application implements CommandLineRunner{
 		
 		Pagamento pagto1 = new PagamentoComCartao(null, EstadoPagamento.QUITADO, ped1, 6);
 		Pagamento pagto2 = new PagamentoComBoleto(null, EstadoPagamento.PENDENTE, ped2, sdf.parse("20/10/2017 00:00"), null);
+		
+		ItemPedido ip1 = new ItemPedido(ped1, p1, 0.0, 1, 2000.0);
+		ItemPedido ip2 = new ItemPedido(ped1, p3, 0.0, 1, 80.0);
+		ItemPedido ip3 = new ItemPedido(ped2, p2, 100.0, 1, 800.0);
+		
 				
 		cat1.setProdutos(Arrays.asList(p1, p2, p3));
 		cat2.setProdutos(Arrays.asList(p2));
@@ -97,12 +107,17 @@ public class Application implements CommandLineRunner{
 		p1.setCategorias(Arrays.asList(cat1));
 		p2.setCategorias(Arrays.asList(cat1, cat2));
 		p3.setCategorias(Arrays.asList(cat1));
+		p1.getItens().add(ip1);
+		p2.getItens().add(ip3);
+		p3.getItens().add(ip2);
 		
 		est1.setCidades(Arrays.asList(c1));
 		est2.setCidades(Arrays.asList(c2, c3));
 		
 		ped1.setPagamento(pagto1);
 		ped2.setPagamento(pagto2);
+		ped1.getItens().addAll(Arrays.asList(ip1, ip2));
+		ped2.getItens().add(ip3);
 		
 		cli1.setEnderecos(Arrays.asList(e1, e2));
 		cli1.getTelefones().addAll(Arrays.asList("27363323", "93838393"));
@@ -117,6 +132,8 @@ public class Application implements CommandLineRunner{
 		enderecoRepository.saveAll(Arrays.asList(e1, e2));
 		pedidoRepository.saveAll(Arrays.asList(ped1, ped2));
 		pagamentoRepository.saveAll(Arrays.asList(pagto1, pagto2));
+		itemPedidoRepository.saveAll(Arrays.asList(ip1, ip2, ip3));
+		
 		
 		
 	}
