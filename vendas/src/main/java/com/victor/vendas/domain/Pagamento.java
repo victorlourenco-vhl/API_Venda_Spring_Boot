@@ -3,7 +3,7 @@ package com.victor.vendas.domain;
 import java.io.Serializable;
 import java.util.Objects;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.victor.vendas.domain.enums.EstadoPagamento;
 
 import jakarta.persistence.Entity;
@@ -25,7 +25,7 @@ public abstract class Pagamento implements Serializable{
 	private Integer estado;
 	
 	@MapsId
-	@JsonBackReference
+	@JsonIgnore
 	@OneToOne
 	@JoinColumn(name = "pedido_id")
 	private Pedido pedido;

@@ -3,7 +3,7 @@ package com.victor.vendas.domain;
 import java.io.Serializable;
 import java.util.Objects;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -13,10 +13,10 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 
 @Entity
-public class Endereco implements Serializable{
-	
+public class Endereco implements Serializable {
+
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
@@ -25,20 +25,19 @@ public class Endereco implements Serializable{
 	private String complemento;
 	private String bairro;
 	private String cep;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "cidade_id")
 	private Cidade cidade;
-	
+
 	@ManyToOne
-	@JsonBackReference
+	@JsonIgnore
 	@JoinColumn(name = "cliente_id")
 	Cliente cliente;
-		
+
 	public Endereco() {
-		
+
 	}
-	
 
 	public Endereco(Integer id, String logradouro, String numero, String complemento, String bairro, String cep,
 			Cidade cidade, Cliente cliente) {
@@ -52,8 +51,6 @@ public class Endereco implements Serializable{
 		this.cidade = cidade;
 		this.cliente = cliente;
 	}
-
-
 
 	public Integer getId() {
 		return id;
@@ -111,22 +108,18 @@ public class Endereco implements Serializable{
 		this.cidade = cidade;
 	}
 
-
 	public Cliente getCliente() {
 		return cliente;
 	}
-
 
 	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
 	}
 
-
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
 	}
-
 
 	@Override
 	public boolean equals(Object obj) {
@@ -139,7 +132,5 @@ public class Endereco implements Serializable{
 		Endereco other = (Endereco) obj;
 		return Objects.equals(id, other.id);
 	}
-	
-	
 
 }
