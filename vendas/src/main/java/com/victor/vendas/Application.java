@@ -70,7 +70,14 @@ public class Application implements CommandLineRunner{
 		
 		Categoria cat1 = new Categoria(null, "Informática");
 		Categoria cat2 = new Categoria(null, "Escritório");
-		Categoria cat3 = new Categoria(null, "Setup");
+		Categoria cat3 = new Categoria(null, "Cama mesa e banho");
+		Categoria cat4 = new Categoria(null, "Eletrônicos");
+		Categoria cat5 = new Categoria(null, "Corte e costura");
+		Categoria cat6 = new Categoria(null, "Decoração");
+		Categoria cat7 = new Categoria(null, "Jardinagem");
+		Categoria cat8 = new Categoria(null, "Perfumaria");
+		Categoria cat9 = new Categoria(null, "Eletrodomésticos");
+		Categoria cat10 = new Categoria(null, "Doceria");
 		
 		Produto p1 = new Produto(null, "Computador", 2000.00);
 		Produto p2 = new Produto(null, "Impressora", 800.00);
@@ -123,7 +130,7 @@ public class Application implements CommandLineRunner{
 		cli1.getTelefones().addAll(Arrays.asList("27363323", "93838393"));
 		cli1.setPedidos(Arrays.asList(ped1, ped2));
 		
-		categoriaRepository.saveAll(Arrays.asList(cat1, cat2, cat3));
+		categoriaRepository.saveAll(Arrays.asList(cat1, cat2, cat3, cat4, cat5, cat6, cat7, cat8, cat9, cat10));
 		produtoRepository.saveAll(Arrays.asList(p1, p2, p3));
 		estadoRepository.saveAll(Arrays.asList(est1, est2));
 		cidadeRepository.saveAll(Arrays.asList(c1, c2, c3));
