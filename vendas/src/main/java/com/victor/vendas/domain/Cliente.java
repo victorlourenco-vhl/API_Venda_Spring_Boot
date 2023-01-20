@@ -7,6 +7,8 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
+import org.hibernate.validator.constraints.Length;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.victor.vendas.domain.enums.TipoCliente;
 
@@ -17,6 +19,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotEmpty;
 
 @Entity
 public class Cliente implements Serializable{
@@ -26,7 +30,13 @@ public class Cliente implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+	
+	@NotEmpty(message = "O campo nome deve ser preenchido")
+	@Length(min = 5, max = 80, message = "O nome deve conter entre 5 e 80 caracteres")
 	private String nome;
+	
+	@NotEmpty(message = "O campo e-mail deve ser preenchido")
+	@Email(message = "E-mail inválido")
 	private String email;
 	private String cpfOuCnpj;
 	private Integer tipo;
@@ -52,7 +62,7 @@ public class Cliente implements Serializable{
 		this.nome = nome;
 		this.email = email;
 		this.cpfOuCnpj = cpfOuCnpj;
-		this.tipo = tipo.getCod();
+		this.tipo = (tipo == null)? null : tipo.getCod();
 	}
 
 	public Integer getId() {
