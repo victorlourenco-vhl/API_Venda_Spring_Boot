@@ -3,7 +3,6 @@ package com.victor.vendas.services;
 import java.util.List;
 import java.util.Optional;
 
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
@@ -11,7 +10,6 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
-import com.victor.vendas.domain.Categoria;
 import com.victor.vendas.domain.Cliente;
 import com.victor.vendas.dto.ClienteDTO;
 import com.victor.vendas.repositories.ClienteRepository;
@@ -46,10 +44,10 @@ public class ClienteService {
 		return repo.save(obj);
 	}
 	
-	public Cliente update(Cliente objUpdate) {
-		Cliente obj = findById(objUpdate.getId());
-		obj = updateData(objUpdate, obj);
-		return repo.save(obj);
+	public Cliente update(Cliente obj) {
+		Cliente newObj = findById(obj.getId());
+		updateData(newObj, obj);
+		return repo.save(newObj);
 	}
 	
 	public void delete(Integer id) {
@@ -65,12 +63,11 @@ public class ClienteService {
 		return new Cliente(objDto.getId(), objDto.getNome(), objDto.getEmail(), objDto.getCpfOuCnpj(), objDto.getTipo());
 	}
 	
-	private Cliente updateData(Cliente objUpdate, Cliente obj) {
-		obj.setNome(objUpdate.getNome() == null? obj.getNome(): objUpdate.getNome());
-		obj.setEmail(objUpdate.getEmail() == null? obj.getEmail(): objUpdate.getEmail());
-		obj.setCpfOuCnpj(objUpdate.getCpfOuCnpj() == null? obj.getCpfOuCnpj(): objUpdate.getCpfOuCnpj());
-		obj.setTipo(objUpdate.getTipo() == null? obj.getTipo(): objUpdate.getTipo());
-		return obj;
+	private void updateData(Cliente newObj, Cliente obj) {
+		newObj.setNome(obj.getNome() == null? newObj.getNome(): obj.getNome());
+		newObj.setEmail(obj.getEmail() == null? newObj.getEmail():obj.getEmail());
+		newObj.setCpfOuCnpj(obj.getCpfOuCnpj() == null? newObj.getCpfOuCnpj(): obj.getCpfOuCnpj());
+		newObj.setTipo(obj.getTipo() == null? newObj.getTipo(): obj.getTipo());
 	}
 	
 	
