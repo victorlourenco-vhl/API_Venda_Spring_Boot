@@ -4,9 +4,12 @@ import java.io.Serializable;
 
 import org.hibernate.validator.constraints.Length;
 
+import com.victor.vendas.services.validator.ClienteInsert;
+
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
 
+@ClienteInsert
 public class ClienteNewDTO implements Serializable{
 
 	private static final long serialVersionUID = 1L;
@@ -18,13 +21,21 @@ public class ClienteNewDTO implements Serializable{
 	@NotEmpty(message = "O campo e-mail deve ser preenchido")
 	@Email(message = "E-mail inválido")
 	private String email;
+	
+	@NotEmpty(message = "O campo CPF/CNPJ deve ser preenchido")
 	private String cpfOuCnpj;
 	private Integer tipo;
 	
+	@NotEmpty(message = "O campo logradouro deve ser preenchido")
 	private String logradouro;
+	
+	@NotEmpty(message = "O campo número deve ser preenchido")
 	private String numero;
 	private String complemento;
+	
 	private String bairro;
+	
+	@NotEmpty(message = "O campo CEP deve ser preenchido")
 	private String cep;
 	
 	@NotEmpty(message = "O campo telefone deve ser preenchido")
