@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,6 +17,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.victor.vendas.domain.Cliente;
 import com.victor.vendas.dto.ClienteDTO;
+import com.victor.vendas.dto.ClienteNewDTO;
 import com.victor.vendas.services.ClienteService;
 
 import jakarta.validation.Valid;
@@ -52,8 +54,9 @@ public class ClienteResource {
 		return ResponseEntity.ok().body(obj);
 	}
 	
+	@Transactional
 	@RequestMapping(method = RequestMethod.POST)
-	public ResponseEntity<Void> insert(@Valid @RequestBody ClienteDTO objDto){
+	public ResponseEntity<Void> insert(@Valid @RequestBody ClienteNewDTO objDto){
 		Cliente obj = service.insert(service.fromDto(objDto));
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
 		return ResponseEntity.created(uri).build();
