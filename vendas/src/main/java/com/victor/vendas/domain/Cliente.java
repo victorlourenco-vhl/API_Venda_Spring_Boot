@@ -14,6 +14,7 @@ import com.victor.vendas.domain.enums.TipoCliente;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.CollectionTable;
+import jakarta.persistence.Column;
 import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -38,6 +39,7 @@ public class Cliente implements Serializable{
 	
 	@NotEmpty(message = "O campo e-mail deve ser preenchido")
 	@Email(message = "E-mail inválido")
+	@Column(unique = true)
 	private String email;
 	private String cpfOuCnpj;
 	private Integer tipo;
