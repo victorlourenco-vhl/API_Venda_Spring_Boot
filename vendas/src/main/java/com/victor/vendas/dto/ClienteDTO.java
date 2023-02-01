@@ -4,7 +4,9 @@ import java.io.Serializable;
 
 import com.victor.vendas.domain.Cliente;
 import com.victor.vendas.domain.enums.TipoCliente;
+import com.victor.vendas.services.validator.ClienteUpdate;
 
+@ClienteUpdate
 public class ClienteDTO implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
