@@ -1,10 +1,12 @@
 package com.victor.vendas.domain;
 
+import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.victor.vendas.domain.enums.EstadoPagamento;
 
 import jakarta.persistence.Entity;
 
 @Entity
+@JsonTypeName("pagamentoComCartao")
 public class PagamentoComCartao extends Pagamento{
 	
 	private static final long serialVersionUID = 1L;
