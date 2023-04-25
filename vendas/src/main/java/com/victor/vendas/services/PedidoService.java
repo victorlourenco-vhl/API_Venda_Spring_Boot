@@ -10,11 +10,11 @@ import org.springframework.transaction.annotation.Transactional;
 import com.victor.vendas.domain.ItemPedido;
 import com.victor.vendas.domain.PagamentoComBoleto;
 import com.victor.vendas.domain.Pedido;
+import com.victor.vendas.domain.Produto;
 import com.victor.vendas.domain.enums.EstadoPagamento;
 import com.victor.vendas.repositories.ItemPedidoRepository;
 import com.victor.vendas.repositories.PagamentoRepository;
 import com.victor.vendas.repositories.PedidoRepository;
-import com.victor.vendas.repositories.ProdutoRepository;
 import com.victor.vendas.services.exceptions.ObjectNotFoundException;
 
 @Service
@@ -30,7 +30,7 @@ public class PedidoService {
 	private PagamentoRepository pagamentoRepository;
 
 	@Autowired
-	private ProdutoRepository produtoRepository;
+	private ProdutoService produtoService;
 
 	@Autowired
 	private ItemPedidoRepository itemPedidoRepository;
@@ -56,7 +56,8 @@ public class PedidoService {
 		pagamentoRepository.save(obj.getPagamento());
 		for (ItemPedido ip : obj.getItens()) {
 			ip.setDesconto(0.0);
-			ip.setPreco(produtoRepository.findById(ip.getProduto().getId()).get().getPreco());
+			Produto produto = produtoService.findById(ip.getProduto().getId());
+			ip.setPreco(produto.getPreco());
 			ip.setPedido(obj);
 		}
 		itemPedidoRepository.saveAll(obj.getItens());
