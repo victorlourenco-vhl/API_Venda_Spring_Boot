@@ -12,7 +12,7 @@ import com.victor.vendas.services.EmailService;
 import jakarta.mail.MessagingException;
 
 @RestController
-@RequestMapping(name = "email")
+@RequestMapping(value = "/email")
 public class EmailResource {
 	
 	@Autowired

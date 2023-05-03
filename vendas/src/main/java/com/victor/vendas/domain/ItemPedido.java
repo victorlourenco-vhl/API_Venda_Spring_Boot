@@ -1,6 +1,8 @@
 package com.victor.vendas.domain;
 
 import java.io.Serializable;
+import java.text.NumberFormat;
+import java.util.Locale;
 import java.util.Objects;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -107,6 +109,7 @@ public class ItemPedido implements Serializable {
 
 	@Override
 	public String toString() {
+		NumberFormat nf = NumberFormat.getCurrencyInstance(new Locale("pt", "BR"));
 		StringBuilder builder = new StringBuilder();
 		builder.append(getProduto().getNome());
 		builder.append(", Quant: ");
@@ -114,7 +117,7 @@ public class ItemPedido implements Serializable {
 		builder.append(", Preço unitário: ");
 		builder.append(preco);
 		builder.append(", Subtotal: ");		
-		builder.append(getSubtotal());		
+		builder.append(nf.format(getSubtotal()));		
 		builder.append("\n");		
 		return builder.toString();
 	}
