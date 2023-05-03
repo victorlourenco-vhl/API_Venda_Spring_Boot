@@ -11,21 +11,21 @@ import org.springframework.context.annotation.Profile;
 import com.victor.vendas.services.DBService;
 
 @Configuration
-//@Profile("dev")
+@Profile("dev")
 public class DevConfig {
 	
-//	@Autowired
-//	private DBService dbService;
-//
-//	@Value("${spring.jpa.hibernate.ddl-auto")
-//	private String strategy;
-//	
-//	@Bean
-//	public boolean instantiateDatabase() throws ParseException {
-//		if(!"create".equals(strategy))
-//			return false;
-//		dbService.instantiateTestDatabase();
-//		return true;
-//	}
+	@Autowired
+	private DBService dbService;
+
+	@Value("${spring.jpa.hibernate.ddl-auto")
+	private String strategy;
+	
+	@Bean
+	public boolean instantiateDatabase() throws ParseException {
+		if(!"create".equals(strategy))
+			return false;
+		dbService.instantiateTestDatabase();
+		return true;
+	}
 	
 }
